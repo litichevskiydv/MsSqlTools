@@ -5,6 +5,7 @@ namespace ImageValidator
     using System.IO;
     using System.Linq;
     using System.Reflection;
+    using System.Threading;
     using Dapper;
     using JetBrains.Annotations;
     using Microsoft.Extensions.Configuration;
@@ -35,6 +36,7 @@ namespace ImageValidator
         static int Main(string[] args)
         {
             BuildConfiguration(args);
+            Thread.Sleep(TimeSpan.FromMinutes(3));
 
             var connectionsFactory =
                 new SqlConnectionsFactory(Options.Create(
