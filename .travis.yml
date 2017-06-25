@@ -1,4 +1,6 @@
 language: csharp
+env:
+ - IMAGE_TAG=latest
 services:
   - docker
 mono: none
@@ -9,9 +11,7 @@ branches:
     - imageValidator
 script:
  - set -e
- - tag_name=$IMAGE_TAG
- - if [ -z "$IMAGE_TAG" ]; then tag_name='latest'; fi
- - docker pull litichevskiydv/mssql-linux-ex:$tag_name
- - docker run -p 1433:1433 -e 'SA_PASSWORD=k179%HC_D5A' -e 'ACCEPT_EULA=Y' -d litichevskiydv/mssql-linux-ex:$tag_name
+ - docker pull litichevskiydv/mssql-linux-ex:$IMAGE_TAG
+ - docker run -p 1433:1433 -e 'SA_PASSWORD=k179%HC_D5A' -e 'ACCEPT_EULA=Y' -d litichevskiydv/mssql-linux-ex:$IMAGE_TAG
  - dotnet restore "src\ImageValidator" --no-dependencies
  - dotnet run --project "src\ImageValidator\ImageValidator.csproj"
