@@ -2,7 +2,7 @@ language: csharp
 services:
   - docker
 mono: none
-dotnet: 1.1.2
+dotnet: 1.0.4
 dist: trusty
 branches:  
   only:
