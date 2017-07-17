@@ -14,4 +14,5 @@ script:
  - docker pull litichevskiydv/mssql-linux-ex:$IMAGE_TAG
  - docker run -p 1433:1433 -e 'SA_PASSWORD=k179%HC_D5A' -e 'ACCEPT_EULA=Y' -d litichevskiydv/mssql-linux-ex:$IMAGE_TAG
  - dotnet restore "src\ImageValidator" --no-dependencies
+ - sleep 300
  - dotnet run --project "src\ImageValidator\ImageValidator.csproj"

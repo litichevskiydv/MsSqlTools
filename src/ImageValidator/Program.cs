@@ -36,7 +36,6 @@ namespace ImageValidator
         static int Main(string[] args)
         {
             BuildConfiguration(args);
-            Thread.Sleep(TimeSpan.FromMinutes(3));
 
             var connectionsFactory =
                 new SqlConnectionsFactory(Options.Create(
