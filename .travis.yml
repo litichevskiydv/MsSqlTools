@@ -1,0 +1,18 @@
+language: csharp
+env:
+ - IMAGE_TAG=latest
+services:
+  - docker
+mono: none
+dotnet: 1.0.4
+dist: trusty
+branches:  
+  only:
+    - imageValidator
+script:
+ - set -e
+ - docker pull litichevskiydv/mssql-linux-ex:$IMAGE_TAG
+ - docker run -p 1433:1433 -e 'SA_PASSWORD=k179%HC_D5A' -e 'ACCEPT_EULA=Y' -d litichevskiydv/mssql-linux-ex:$IMAGE_TAG
+ - dotnet restore "src\ImageValidator" --no-dependencies
+ - sleep 300
+ - travis_retry dotnet run --project "src\ImageValidator\ImageValidator.csproj"
